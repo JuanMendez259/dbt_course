@@ -1,0 +1,25 @@
+version: 2
+
+models:
+  - name: int_listings_cleansed
+    columns:
+      - name: listing_id
+        tests:
+        - unique
+        - not_null
+
+      - name: host_id
+        tests:
+          - not_null
+          - relationships:
+              field: host_id
+              to: ref('int_hosts_cleansed')
+
+      - name: room_type
+        description: Type of the apartment / room        
+        tests:
+          - accepted_values:
+              values: ['Entire home/apt',
+                      'Private room',
+                      'Shared room',
+                      'Hotel room']
