@@ -11,7 +11,11 @@ WITH reviews AS (
     FROM {{ ref('stg_raw_reviews') }}
     WHERE review_txt IS NOT NULL
 )
-SELECT * FROM reviews
+
+SELECT 
+{{ dbt_utils.generate_surrogate_key(['listing_id', 'review_date', 'reviewer_name', 'review_txt']) }} as review_id,
+* 
+FROM reviews
 
 {% if is_incremental() %}
     -- this filter will only be applied on an incremental run
