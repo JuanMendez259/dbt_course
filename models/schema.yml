@@ -30,3 +30,5 @@ models:
         description: '{{ doc("dim_listing_cleansed__minimum_nights") }}'
         tests:
           - mc_positive_value           
+  - name: int_hosts_cleansed
+    description: this is a clean model
