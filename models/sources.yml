@@ -10,5 +10,10 @@ sources:
         description: One record per customer.
       - name: RAW_LISTINGS
         description: One record per order. Includes cancelled and deleted orders.
+        columns:
+          - name: room_type
+            tests:
+            - dbt_expectations.expect_column_distinct_count_to_equal:
+                value: 4
       - name: RAW_REVIEWS
         description: this contain the reviws from the clients.
